@@ -7,3 +7,4 @@ Here so that I can steadily and publicly work my way through the problems on
 # Completed
 * 0001
 * 0002
+* 0003
