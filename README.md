@@ -9,24 +9,13 @@ Warning that this contains (obviously) spoilers for Project Euler. If you want
 the satisfaction of figuring out the problems on your own, you probably shouldn't
 be reading my answers!
 
+## Funniest Solutions
+These are the solutions where I do something ridiculous (or clever) and are the ones I recommend
+checking out if you want to get a sense for the kind of programming I find interesting:
 
-# Completed
-* 0001
-* 0002
-* 0003
-* 0004
-* 0005
-* 0006
-* 0007
-* 0008
-* 0009
-* 0010
-* 0011
-* 0012
-* 0013
-* 0014
-* 0015
-* 0016
-* 0017
-* 0018
-* 0019
+* 2
+* 5
+* 7
+* 11
+* 14
+* 19
