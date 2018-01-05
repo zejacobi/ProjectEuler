@@ -46,3 +46,18 @@ print(1000 / log10(new / old))
 
 # (I could probably get the answer by guessing around that number, but that feels outside the
 # spirit of project Euler)
+
+
+old = 1
+new = 1
+index = 2
+
+while log10(new) < 999:
+    temp = new
+    new = old + new
+    old = temp
+    index += 1
+
+print(index)
+
+# This is off by just 2.97 from our estimation above! Math works!
