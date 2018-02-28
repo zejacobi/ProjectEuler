@@ -26,3 +26,11 @@ def all_rotations(number):
         current = current[-1] + current[:-1]
 
     return out
+
+
+def is_palindrome(num):
+    str_num = str(num)
+    for idx in range(len(str_num) // 2 + 1):
+        if not str_num[idx] == str_num[-idx - 1]:
+            return False
+    return True
