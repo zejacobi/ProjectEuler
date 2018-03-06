@@ -10,8 +10,12 @@ the satisfaction of figuring out the problems on your own, you probably shouldn'
 be reading my answers!
 
 Out of extreme laziness, I've added a short-cut to running the most recent solution. All you have
-to do is run `python ./run_last_solution.py` from the main directory. This was also kind of
+to do is run `python ./run.py -l` from the main directory. This was also kind of
 necessary to have a sane module structure. 
+
+To run a specific solution, use `python ./run.py -n 1` (this will run solution 1). It will raise
+an error if the requested solution doesn't exist. You don't have to worry about padding, that 
+takes care of itself. 
 
 ## Funniest Solutions
 These are the solutions where I do something ridiculous (or clever) and are the ones I recommend
