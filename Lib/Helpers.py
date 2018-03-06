@@ -29,6 +29,7 @@ def all_rotations(number):
 
 
 def is_palindrome(num):
+    """Checks if a number is a palindrome. Does return True for single digit numbers"""
     str_num = str(num)
     for idx in range(len(str_num) // 2 + 1):
         if not str_num[idx] == str_num[-idx - 1]:
