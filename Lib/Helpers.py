@@ -35,3 +35,11 @@ def is_palindrome(num):
         if not str_num[idx] == str_num[-idx - 1]:
             return False
     return True
+
+
+def contains_all_numbers(num, set_of_nums):
+    """Returns true if the num contains all numbers in the set once and only once"""
+    str_num = str(num)
+    if len(str_num) != len(set_of_nums):
+        return False
+    return all([True if str(n) in str_num else False for n in set_of_nums])
