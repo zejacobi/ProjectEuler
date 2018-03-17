@@ -37,7 +37,7 @@ numbers = []
 
 def recursively_find_allowable_bases(current):
     if current not in numbers:
-        numbers.append(current)
+        numbers.append(int(current))
         if len(current) < 4:
             for i in range(1, 9):
                 str_i = str(i)
@@ -48,3 +48,20 @@ def recursively_find_allowable_bases(current):
 recursively_find_allowable_bases('9')
 
 # 401 numbers at this point; that's very reasonable.
+
+factors = [1, 2]
+
+highest = 918273645
+
+
+# I honestly don't see much point in being clever here. We're doing 8 * 401 operations.
+while len(factors) < 9:
+    for n in numbers:
+        pan = ''.join([str(n * f) for f in factors])
+        if contains_all_numbers(pan, [1, 2, 3, 4, 5, 6, 7, 8, 9]) and int(pan) > highest:
+            highest = int(pan)
+
+    factors.append(factors[-1] + 1)
+
+print(highest)
+# yeah that took basically no time
