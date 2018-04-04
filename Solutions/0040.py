@@ -39,7 +39,7 @@ for num in positions_of_interest:
             last_num = breakpoints[ix-1]  # the last number we know in the sequence
             last_pos = breakpoint_values[ix-1]  # the position in the sequence that number was at
             number_digits = num_digs[ix-1]  # the number of digits of every number after that one
-            to_traverse = num - last_pos  # the number of digits between the last known number in
+            to_traverse = num - last_pos  # the difference between the last known number in
                                           # the sequence and the one we care about
             position_in_number = to_traverse % number_digits  # which digit in the next number to take
             sequence_number = to_traverse//number_digits + last_num  # the number in the sequence
