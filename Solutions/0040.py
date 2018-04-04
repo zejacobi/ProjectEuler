@@ -36,6 +36,7 @@ positions_of_interest = [1, 10, 100, 1000, 10000, 100000, 1000000]
 for num in positions_of_interest:
     for ix, value in enumerate(breakpoint_values):
         if value > num:
+            # this math tripped me up once, so I'm documenting it heavily
             last_num = breakpoints[ix-1]  # the last number we know in the sequence
             last_pos = breakpoint_values[ix-1]  # the position in the sequence that number was at
             number_digits = num_digs[ix-1]  # the number of digits of every number after that one
