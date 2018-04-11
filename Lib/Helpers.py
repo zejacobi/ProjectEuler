@@ -1,3 +1,6 @@
+from math import floor, sqrt, ceil
+
+
 def list_primes(limit):
     """Finds a list of all primes below the input limit"""
     bits = [0] + [1 for _ in range(limit)]  # we filter out 0
@@ -14,6 +17,61 @@ def list_primes(limit):
             index += num
 
     return primes
+
+
+def list_big_primes(limit):
+    """Finds an list of all primes below input limit without melting your RAM. Use when
+        limit is large! This is O(sqrt(n)) in space and O(nlog(n)) in time."""
+    delta = int(floor(sqrt(limit)))
+    primes = list_primes(delta)
+    usable_primes = [prime for prime in primes if prime <= sqrt(delta * 2)]
+    higher_primes = [prime for prime in primes if prime >= sqrt(delta * 2)]
+
+    for i in range(delta):
+        ix = i + 1  # 0 is our standard sieve, already called above
+        highest_this_sieve = (ix + 1) * delta
+        prime_limit = sqrt(highest_this_sieve)
+        bits = [0] + [1 for _ in range(delta - 1)]
+
+        # efficiently maintain a list of what primes we're checking
+        highest_ix = -1
+        for list_ix, prime in enumerate(higher_primes):
+            if prime <= prime_limit:
+                usable_primes.append(prime)
+                highest_ix = list_ix
+        highest_ix += 1
+        higher_primes = higher_primes[highest_ix:]
+
+        # at this point, usable primes has all primes less than sqrt(highest_this_sieve)
+        starting_val_this_iteration = ix * delta
+
+        # now we go through our bits for this part of the sieve and mark off all the non prime
+        # numbers
+        for existing_prime in usable_primes:
+            prime_index = existing_prime * (1 + starting_val_this_iteration // existing_prime) - \
+                          starting_val_this_iteration
+            bits[prime_index] = 0
+            prime_index += existing_prime
+            while prime_index < delta:
+                bits[prime_index] = 0
+                prime_index += existing_prime
+
+        # we don't want to always check if the prime is below the limit; just check when we get
+        # close to the limit.
+        if ix < delta:
+            for final_ix, bit in enumerate(bits):
+                if bit:
+                    prime = final_ix + starting_val_this_iteration
+                    primes.append(prime)
+                    higher_primes.append(prime)
+        else:
+            for final_ix, bit in enumerate(bits):
+                if bit:
+                    prime = final_ix + starting_val_this_iteration
+                    if prime < limit:
+                        primes.append(prime)
+    return primes
+
 
 
 def all_rotations(number):
