@@ -73,6 +73,24 @@ def list_big_primes(limit):
     return primes
 
 
+def efficient_is_prime(number, regime_change, primes_below_regime_change):
+    """A quick check for prime that can be well calibrated to the size of the problem and
+       is designed to allow all big computations to be done beforehand. Regime change is the
+       number that the list of primes goes up. This should be the square root of the largest
+       number you expect to see"""
+    if number < regime_change:
+        if not primes_below_regime_change or not len(primes_below_regime_change):
+            return number in list_primes(regime_change)
+        else:
+            return number in primes_below_regime_change
+    elif number <= (regime_change ** 2):
+        for prime in primes_below_regime_change:
+            if not number % prime:
+                return False
+        return True
+    else:
+        raise(NotImplementedError('Give a bigger pre-computer list!'))
+
 
 def all_rotations(number):
     """Finds all rotations of a number (e.g. 123 => 123, 231, 312"""

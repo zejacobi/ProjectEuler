@@ -31,3 +31,34 @@ What is the largest n-digit pandigital prime that exists?
 
 # I'll need a quick way of checking if things are prime, maybe based off an adapted version of
 # my new list_big_primes function
+
+from Lib.Helpers import efficient_is_prime, list_primes
+from math import ceil, sqrt
+
+upper_limit = 987654321
+prime_list_limit = int(ceil(sqrt(upper_limit)) + 1)
+pregen_primes = list_primes(prime_list_limit)
+
+# Adapting code from problem 38, focusing our search as high as possible, we can search like this.
+# Note that if this comes up again, this should go in a friggen helper.
+
+for size in range(9, 0, -1):
+
+    def recursively_find_allowable_bases(current):
+        if len(current) < size:
+            for i in range(1, size):
+                str_i = str(i)
+                if str_i not in current and (len(current) != size - 1 or str_i not in ['0', '2', '4', '6', '8', '5']):
+                    recursively_find_allowable_bases(current + str_i)
+        elif current not in numbers:
+            numbers.append(int(current))
+
+    for start in range(size, 0, -1):
+        numbers = []
+        recursively_find_allowable_bases(str(start))
+
+        primes = [number for number in numbers if efficient_is_prime(number, prime_list_limit, pregen_primes)]
+
+        if len(primes):
+            print(sorted(primes)[-1])
+            exit()
