@@ -40,4 +40,3 @@ with open(file_path, 'r') as words:
               [sum([letter_values[letter] for letter in word[1:-1]])
                for word in words.read().split(',') if word] if num in triangle_numbers]))
     # Some people love python for it's clarity. Me? I just like to abuse list comprehension
-
