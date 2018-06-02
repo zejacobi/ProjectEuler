@@ -40,3 +40,4 @@ for i in range(3, 200000, 2):
     if i not in primes:
         if not check_conjecture(i):
             print(i)
+            exit()
