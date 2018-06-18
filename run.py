@@ -13,8 +13,8 @@ parser.add_argument('-n', '--number', dest='number',
 args = parser.parse_args()
 
 if args.last:
-    options = sorted([path for path in glob('.' + path.sep + 'Solutions' + path.sep + '*')
-                      if '__' not in path])
+    options = sorted([file_path for file_path in glob('.' + path.sep + 'Solutions' + path.sep + '*')
+                      if '__' not in file_path])
 
     last = options[-1]
 
