@@ -33,3 +33,10 @@ checking out if you want to get a sense for the kind of programming I find inter
 * 35
 * 49
 * 50
+
+## Problems With A Bonus Solution
+Occasionally, I try to come up with a quick and dirty approximate solution or show another way
+to do a problem. These can be interesting.
+
+* 53
+
