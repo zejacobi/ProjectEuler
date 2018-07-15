@@ -22,7 +22,7 @@ How many, not necessarily distinct, values of  nCr, for 1 ≤ n ≤ 100, are gre
 # (Striling's approximation)
 
 # Luckily, all those last terms cancel out. If we use Stirling's approximation here, we find that
-# nlog(n) - rlog(r) - (n - r)log(n - r) ≥ 6. This makes use of log rules and Stirling's
+# nlog(n) - rlog(r) - (n - r)log(n - r) . 6. This makes use of log rules and Stirling's
 # approximation and only uses base 10 logs. With the additional constraint of r < n (well, it
 # technically could be greater, but if r = n, then the expression is unity), this would be
 # relatively simple to solve graphically for a good estimate. But I don't see any benefit to that
@@ -33,7 +33,7 @@ How many, not necessarily distinct, values of  nCr, for 1 ≤ n ≤ 100, are gre
 # requires 33 calculations and there's probably a good log lookup table somewhere on my computer
 # for small integers. But still, I'd probably be off by like 5 and then Euler wouldn't be happy.
 
-from math import factorial
+from math import factorial, log10
 
 
 def number_combinations(n, r):
@@ -45,4 +45,22 @@ for i in range(2, 101):
     for j in range(1, i):
         count += (number_combinations(i, j) > 1000000)
 
-print(count)
+print("The solution is:", count)
+
+
+# Okay, for my curiousity, did I Stirling right with my equation above?
+
+def log_number_combinations(n, r):
+    return n * log10(n) - r * log10(r) - (n - r) * log10(n - r)
+
+
+log_count = 0
+for i in range(2, 101):
+    for j in range(1, i):
+        log_count += (log_number_combinations(i, j) > 6)
+
+print("This can also be approximately solved with a Stirling's Approximation, which gives:",
+      log_count)
+
+# Yep, it gives 4189, which is accurate to 2.8%, but obviously not going to work for Project Euler.
+# I am glad I remembered how to do it.
