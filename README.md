@@ -1,8 +1,8 @@
 # ProjectEuler
 ![current progress](https://projecteuler.net/profile/zedjacobi.png)
 
-Here so that I can steadily and publicly work my way through the problems on 
-[Project Euler](https://projecteuler.net). See also my 
+Here so that I can steadily and publicly work my way through the problems on
+[Project Euler](https://projecteuler.net). See also my
 [Beeminder goal](https://www.beeminder.com/zacharyjacobi/euler).
 
 Warning that this contains (obviously) spoilers for Project Euler. If you want
@@ -11,11 +11,15 @@ be reading my answers!
 
 Out of extreme laziness, I've added a short-cut to running the most recent solution. All you have
 to do is run `python ./run.py -l` from the main directory. This was also kind of
-necessary to have a sane module structure. 
+necessary to have a sane module structure.
 
 To run a specific solution, use `python ./run.py -n 1` (this will run solution 1). It will raise
-an error if the requested solution doesn't exist. You don't have to worry about padding, that 
-takes care of itself. 
+an error if the requested solution doesn't exist. You don't have to worry about padding, that
+takes care of itself.
+
+To print out the time that a solution takes, add in the `-t` flag on execution. It works using an
+`atexit` handler, so it can reliably print out times even for solutions which make use of `exit()`
+to end execution the second they have the solution.
 
 ## Funniest Solutions
 These are the solutions where I do something ridiculous (or clever) and are the ones I recommend
