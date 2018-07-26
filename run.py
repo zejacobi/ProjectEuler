@@ -44,7 +44,7 @@ elif args.number:
     try:
         open(sol_path, 'r')
     except FileNotFoundError:
-        print('Error: Solution "{}" does not exit'.format(number))
+        print('Error: Solution "{}" does not exist'.format(number))
         exit(1)
 else:
     print('No arguments provided; closing.')
