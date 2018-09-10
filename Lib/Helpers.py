@@ -1,4 +1,4 @@
-from math import floor, sqrt, ceil
+from math import floor, sqrt
 
 
 def list_primes(limit):
@@ -119,3 +119,29 @@ def contains_all_numbers(num, set_of_nums):
     if len(str_num) != len(set_of_nums):
         return False
     return all([True if str(n) in str_num else False for n in set_of_nums])
+
+
+def greatest_common_divisor(a, b, prime_list=None):
+    """Returns the greatest common divisor of a and b"""
+    # https://en.wikipedia.org/wiki/Euclidean_algorithm
+
+    # get our numbers in a predictable format
+    if b > a:
+        b, a = a, b
+
+    # deal with co-prime cases efficiently if given the tools to do so
+    if prime_list:
+        if a in prime_list:
+            return 1
+        elif b in prime_list:
+            if a % b == 0:
+                return b
+            else:
+                return 1
+
+    while b != 0:
+        new_a = b
+        b = a % b
+        a = new_a
+    return a
+
