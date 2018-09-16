@@ -89,7 +89,7 @@ def efficient_is_prime(number, regime_change, primes_below_regime_change):
                 return False
         return True
     else:
-        raise(NotImplementedError('Give a bigger pre-computer list!'))
+        raise(NotImplementedError('Give a bigger pre-computed list!'))
 
 
 def all_rotations(number):
