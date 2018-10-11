@@ -18,22 +18,35 @@ prime_list = list_big_primes(prime_list_max)
 
 set_list = []
 
+global_variables = {
+    "current_number": None,
+    "forbidden_numbers": None
+}
 
-def check_list_combinations(set_of_primes):
+
+def check_list_combinations(set_of_primes, glob=None):
     if len(set_of_primes) < 2:
         return True
+    if glob and glob['forbidden_numbers']:
+        for n in glob['forbidden_numbers']:
+            if n in set_of_primes:
+                return False
     for ind, prime in enumerate(set_of_primes[:-1]):
         for prime2 in set_of_primes[ind+1:]:
             if not (efficient_is_prime(int(str(prime) + str(prime2)), prime_list_max, prime_list)
                     and efficient_is_prime(int(str(prime2) + str(prime)), prime_list_max, prime_list)):
+                if glob and glob['current_number'] and prime == glob['current_number']:
+                    glob['forbidden_numbers'].append(prime2)
                 return False
     return True
 
 
 for prime_number in prime_list:
+    global_variables["current_number"] = prime_number
+    global_variables["forbidden_numbers"] = []
     for prime_set in set_list:
-        temp_set = prime_set + [prime_number]
-        all_combos_prime = check_list_combinations(temp_set)
+        temp_set = [prime_number] + prime_set
+        all_combos_prime = check_list_combinations(temp_set, global_variables)
         n_in_temp_set = len(temp_set)
         if all_combos_prime and n_in_temp_set < 5:
             set_list.append(temp_set)
@@ -41,4 +54,6 @@ for prime_number in prime_list:
             print(sum(temp_set))
             exit()
 
-    set_list.append([prime_number])
+    if prime_number != 2 and prime_number != 5:
+        # set can never have 2 or 5
+        set_list.append([prime_number])
