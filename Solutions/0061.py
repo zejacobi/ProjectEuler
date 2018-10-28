@@ -24,3 +24,53 @@ triangle, square, pentagonal, hexagonal, heptagonal, and octagonal,
 is represented by a different number in the set.
 """
 
+formula_types = ['triangle', 'square', 'pentagonal', 'hexagonal', 'heptagonal', 'octagonal']
+
+
+def triangle(x):
+    return x * (x + 1) / 2
+
+
+def square(x):
+    return x ** 2
+
+
+def pentagonal(x):
+    return x * (3 * x -1) / 2
+
+
+def hexagonal(x):
+    return x * (2 * x - 1)
+
+
+def heptagonal(x):
+    return x * (5 * x - 3) / 2
+
+
+def octagonal(x):
+    return x * (3 * x - 2)
+
+
+# what, how is this legal?
+formulas = {formula_name: globals()[formula_name] for formula_name in formula_types}
+four_digit_numbers = {}
+
+# for curiosity
+# combinations = 1
+
+for formula_type in formula_types:
+    four_digit_numbers[formula_type] = []
+    n = 1
+    value = int(formulas[formula_type](n))
+    val_len = len(str(value))
+    while val_len <= 4:
+        if val_len == 4:
+            four_digit_numbers[formula_type].append(value)
+        n += 1
+        value = int(formulas[formula_type](n))
+        val_len = len(str(value))
+    # combinations *= len(four_digit_numbers[formula_type])
+
+# print(combinations, 'Taking probably', combinations / (3600 * 100000), 'hours')
+# 83 hours if we check 100,000 per second.
+
