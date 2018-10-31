@@ -24,7 +24,7 @@ parser.add_argument('-t', '--time', dest='time', action='store_true',
                     help='Outputs the time the program takes to run')
 parser.add_argument('-n', '--number', dest='number',
                     help='Runs the solution to the provided question number. Raises error if '
-                         'missing; fills in any missing padding')
+                         'missing. You do not need add preceding 0s.')
 
 args = parser.parse_args()
 
