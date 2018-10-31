@@ -144,4 +144,3 @@ def greatest_common_divisor(a, b, prime_list=None):
         b = a % b
         a = new_a
     return a
-
