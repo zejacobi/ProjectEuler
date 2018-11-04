@@ -24,6 +24,7 @@ triangle, square, pentagonal, hexagonal, heptagonal, and octagonal,
 is represented by a different number in the set.
 """
 
+
 formula_types = ['triangle', 'square', 'pentagonal', 'hexagonal', 'heptagonal', 'octagonal']
 
 
@@ -36,7 +37,7 @@ def square(x):
 
 
 def pentagonal(x):
-    return x * (3 * x -1) / 2
+    return x * (3 * x - 1) / 2
 
 
 def hexagonal(x):
@@ -55,8 +56,6 @@ def octagonal(x):
 formulas = {formula_name: globals()[formula_name] for formula_name in formula_types}
 four_digit_numbers = {}
 
-# for curiosity
-# combinations = 1
 
 for formula_type in formula_types:
     four_digit_numbers[formula_type] = []
@@ -69,8 +68,49 @@ for formula_type in formula_types:
         n += 1
         value = int(formulas[formula_type](n))
         val_len = len(str(value))
-    # combinations *= len(four_digit_numbers[formula_type])
 
-# print(combinations, 'Taking probably', combinations / (3600 * 100000), 'hours')
-# 83 hours if we check 100,000 per second.
+first_parts = []
+back_parts = []
 
+for formula_type in formula_types:
+    for number in four_digit_numbers[formula_type]:
+        str_num = str(number)
+        first_parts.append(str_num[0:2])
+        back_parts.append(str_num[2:])
+
+first_parts = list(set(first_parts))
+back_parts = list(set(back_parts))
+
+useful_numbers = {}
+
+for formula_type in formula_types:
+    useful_numbers[formula_type] = []
+    for number in four_digit_numbers[formula_type]:
+        str_num = str(number)
+        first_part = str_num[0:2]
+        back_part = str_num[2:]
+        if first_part in back_parts and back_part in first_parts:
+            useful_numbers[formula_type].append(str_num)
+            # str version of number is easier to work with
+
+
+potential_sequences = useful_numbers[formula_types[0]]
+
+for formula_type in formula_types[1:]:
+    surviving_sequences = []
+    for str_num in useful_numbers[formula_type]:
+        for seq in potential_sequences:
+            if str_num[0:2] == seq[-2:]:
+                surviving_sequences.append(seq + str_num)
+            if str_num[2:] == seq[0:2]:
+                surviving_sequences.append(str_num + seq)
+    potential_sequences = surviving_sequences
+
+
+only_seq = [seq for seq in potential_sequences if seq[0:2] == seq[-2:]][0]
+
+seq_numbers = []
+for i in range(0, len(only_seq), 4):
+    seq_numbers.append(int(only_seq[i:i+4]))
+
+print(sum(seq_numbers))
