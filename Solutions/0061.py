@@ -56,8 +56,6 @@ def octagonal(x):
 formulas = {formula_name: globals()[formula_name] for formula_name in formula_types}
 four_digit_numbers = {}
 
-# for curiosity
-# combinations = 1
 
 for formula_type in formula_types:
     four_digit_numbers[formula_type] = []
