@@ -1,0 +1,1 @@
+# https://math.stackexchange.com/questions/265690/continued-fraction-of-a-square-root
